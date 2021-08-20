@@ -1,0 +1,45 @@
+
+
+Analisa DataBase
+
+1. Product
+nama produk
+kategory produk
+relasi ke nama produk
+harga produk
+deskripsi
+kategori produk
+
+2. Kategory
+kategory
+nama kategory
+slug
+
+3. gallery produk
+foto produk
+relasi ke nama produk
+
+4. cart
+relasi ke produk
+relasi ke user
+
+5. user
+alamat1
+alamat2
+provincy
+kota
+kode pos
+nomer hp
+
+6. transaksi 
+relasi ke user
+jumlah ansuransi 
+ongkir 
+total
+status transaksi
+resi
+
+7. transaksi detail
+relasi ke transaksi
+relasi ke produk
+harga barang
