@@ -60,12 +60,24 @@
 						<div class="col-lg-8">
 							<h1>{{ $products->name }}</h1>
 							<div class="owner">By {{ $products->user->name}}</div>
-							<div class="price">${{ $products->price }}</div>
+							<div class="price">Rp {{number_format($products->price) }}</div>
 						</div>
 						<div class="col-lg-2" data-aos="zoom-in">
-							<a href="/cart.html" class="btn btn-success px-4 text-white btn-block mb-3">
-								Add To Cart
-							</a>
+							@auth
+
+								<form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data">
+									@csrf
+									<button type="submit" class="btn btn-success px-4 text-white btn-block mb-3">
+										Add to Cart
+									</button>
+								</form>
+								@else
+								<a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
+									 Login to add
+								</a>
+
+							@endauth
+						
 						</div>
 					</div>
 				</div>
@@ -75,8 +87,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-12 col-lg-8">
-							<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-							<p>Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until.</p>
+							{!! $products->description !!}
 						</div>
 					</div>
 				</div>
@@ -135,25 +146,16 @@
 				AOS.init();
 			},
 			data: {
-				activePhoto: 1,
+				activePhoto: 0,
 				photos: [
-					{
-					id: 1,
-					url: "/images/product-1.jpg"
-					},
-					{
-					id: 2,
-					url: "/images/product-2.jpg"
-					},
-					{
-					id: 3,
-					url: "/images/product-3.jpg"
-					},
-					{
-					id: 4,
-					url: "/images/product-4.jpg"
-					},
-					
+					@foreach( $products->galleries as $gallery)
+
+						{
+						id:  {{ $gallery->id }},
+						url: "{{ Storage::url($gallery->photos) }}",
+						},
+
+					@endforeach
 				],
 			},
 			methods: {

@@ -82,10 +82,12 @@ class ProductController extends Controller
     {
         //input request nama dan foto dan slug
         $data = $request->all();
+        
 
         $data['slug'] = Str::slug($request->name);
         //create
       $product =   Product::create($data);
+    //   dd($product);
 
         
         if($product){

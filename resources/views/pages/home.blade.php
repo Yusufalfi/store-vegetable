@@ -182,7 +182,8 @@
                                 <h3><a href="#"> {{$item->name}}</a></h3>
                                 <div class="d-flex">
                                     <div class="pricing">
-                                        <p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$ {{number_format($item->price)}} </span></p>
+                                        {{-- {{number_format($item->price)}} --}}
+                                        <p class="price"><span class="mr-2 price-dc">Rp 120.00</span><span class="price-sale">Rp {{ number_format($item->price) }} </span></p>
                                     </div>
                                 </div>
                                 <div class="bottom-area d-flex px-3">
