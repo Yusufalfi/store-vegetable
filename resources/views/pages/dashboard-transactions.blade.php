@@ -29,135 +29,62 @@
 									
 								</ul>
 								<div class="tab-content" id="pills-tabContent">
-									<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"><a href="/dashboard-transactions-details.html" class="card card-list d-block">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-1">
-												<img src="/images/product-4.jpg" alt="" style="max-width: 75px;">
-											</div>
-											<div class="col-md-4  mt-2">
-												brokolly
-											</div>
-											<div class="col-md-3 mt-2">
-											Yusuf
-											</div>
-											<div class="col-md-3 mt-2">
-											january 2010
-											</div>
-											<div class="col-md-1 d-none d-md-block">
-												<img src="/images/dashboard-arrow-right.svg">
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="/dashboard-transactions-details.html" class="card card-list d-block">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-1">
-												<img src="/images/product-4.jpg" alt="" style="max-width: 75px;">
-											</div>
-											<div class="col-md-4 mt-2">
-												brokolly
-											</div>
-											<div class="col-md-3 mt-2">
-											Yusuf
-											</div>
-											<div class="col-md-3 mt-2">
-											january 2010
-											</div>
-											<div class="col-md-1 d-none d-md-block">
-												<img src="/images/dashboard-arrow-right.svg">
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="/dashboard-transactions-details.html" class="card card-list d-block">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-1">
-												<img src="/images/product-4.jpg" alt="" style="max-width: 75px;">
-											</div>
-											<div class="col-md-4  mt-2">
-												brokolly
-											</div>
-											<div class="col-md-3 mt-2">
-											Yusuf
-											</div>
-											<div class="col-md-3 mt-2">
-											january 2010
-											</div>
-											<div class="col-md-1 d-none d-md-block">
-												<img src="/images/dashboard-arrow-right.svg">
-											</div>
-										</div>
-									</div>
-								</a>
+									<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+									
+										@foreach ($sellTransactions as $sell)
+											<a href="{{ route('dashboard-transaction-details', $sell->id) }}" class="card card-list d-block">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-1">
+															<img src=" {{ Storage::url($sell->product->galleries->first()->photos ?? '') }}" alt="" style="max-width: 75px;">
+														</div>
+														<div class="col-md-4  mt-2">
+															{{ $sell->product->name}}
+														</div>
+														<div class="col-md-3 mt-2">
+															{{ $sell->product->user->store_name}}
+														</div>
+														<div class="col-md-3 mt-2">
+														 {{ $sell->created_at }}
+														</div>
+														<div class="col-md-1 d-none d-md-block">
+															<img src="/images/dashboard-arrow-right.svg">
+														</div>
+													</div>
+												</div>
+										</a>
+							
+										@endforeach
 
 									</div>
-									<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"><a href="/dashboard-transactions-details.html" class="card card-list d-block">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-1">
-												<img src="/images/product-4.jpg" alt="" style="max-width: 75px;">
-											</div>
-											<div class="col-md-4  mt-2">
-												brokolly
-											</div>
-											<div class="col-md-3 mt-2">
-											Yusuf
-											</div>
-											<div class="col-md-3 mt-2">
-											january 2010
-											</div>
-											<div class="col-md-1 d-none d-md-block">
-												<img src="/images/dashboard-arrow-right.svg">
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="/dashboard-transactions-details.html" class="card card-list d-block">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-1">
-												<img src="/images/product-5.jpg" alt="" style="max-width: 75px;">
-											</div>
-											<div class="col-md-4 mt-2">
-												brokolly
-											</div>
-											<div class="col-md-3 mt-2">
-											Yusuf
-											</div>
-											<div class="col-md-3 mt-2">
-											january 2010
-											</div>
-											<div class="col-md-1 d-none d-md-block">
-												<img src="/images/dashboard-arrow-right.svg">
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="/dashboard-transactions-details.html" class="card card-list d-block">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-1">
-												<img src="/images/product-5.jpg" alt="" style="max-width: 75px;">
-											</div>
-											<div class="col-md-4  mt-2">
-												brokolly
-											</div>
-											<div class="col-md-3 mt-2">
-											Yusuf
-											</div>
-											<div class="col-md-3 mt-2">
-											january 2010
-											</div>
-											<div class="col-md-1 d-none d-md-block">
-												<img src="/images/dashboard-arrow-right.svg">
-											</div>
-										</div>
-									</div>
-								</a></div>
-									
+									{{-- buy --}}
+									<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+										@foreach ($buyTransactions as $buy)
+											<a href="{{ route('dashboard-transaction-details', $buy->id) }}" class="card card-list d-block">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-1">
+															<img src=" {{ Storage::url($buy->product->galleries->first()->photos ?? '') }}" alt="" style="max-width: 75px;">
+														</div>
+														<div class="col-md-4  mt-2">
+															{{ $buy->product->name}}
+														</div>
+														<div class="col-md-3 mt-2">
+															{{ $buy->product->user->store_name}}
+														</div>
+														<div class="col-md-3 mt-2">
+														 {{ $buy->created_at }}
+														</div>
+														<div class="col-md-1 d-none d-md-block">
+															<img src="/images/dashboard-arrow-right.svg">
+														</div>
+													</div>
+												</div>
+									     	</a>
+							
+										@endforeach
+								
+							        </div>									
 								</div>
 							
 								

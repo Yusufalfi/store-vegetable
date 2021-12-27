@@ -22,7 +22,7 @@ class CategoryController extends Controller
         $categories = Category::all();
         // dd($banners);
         // panggil model Product dan panggil relasi Galleries dan take/ambil 8 Item foto
-        $products = Product::with(['galleries'])->paginate(2);
+        $products = Product::with(['galleries'])->paginate(50);
         return view('pages.category', compact('categories', 'products'));
     }
 

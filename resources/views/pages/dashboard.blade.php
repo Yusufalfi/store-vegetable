@@ -22,7 +22,7 @@
                                     Customer
                                 </div>
                                 <div class="dashboard-card-subtitle">
-                                    $200
+                                    {{ number_format($customer) }}
                                 </div>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                                     Revenue
                                 </div>
                                 <div class="dashboard-card-subtitle">
-                                    $1200
+                                  Rp {{ number_format($revenue) }}
                                 </div>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                                     Transaction
                                 </div>
                                 <div class="dashboard-card-subtitle">
-                                    $2100
+                                  {{ number_format($transaction_count) }}
                                 </div>
                             </div>
                         </div>
@@ -55,20 +55,22 @@
                 <div class="row mt-3">
                     <div class="col-12 mt-2">
                         <h5 class="mb-3">Recent Transaction</h5>
-                        <a href="/dashboard-transactions-details.html" class="card card-list d-block">
+
+                        @foreach ($transaction_data as $transaction)
+                        <a href=" {{ route('dashboard-transaction-details', $transaction->id) }}" class="card card-list d-block">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-1">
-                                        <img src="./images/product-4.jpg" alt="" style="max-width: 75px;">
+                                        <img src=" {{ Storage::url($transaction->product->galleries->first()->photos ?? '') }}" alt="" style="max-width: 75px;">
                                     </div>
                                     <div class="col-md-4  mt-2">
-                                        brokolly
+                                       {{ $transaction->product->name ?? '' }}
                                     </div>
                                     <div class="col-md-3 mt-2">
-                                    Yusuf
+                                        {{ $transaction->product->user->name ?? '' }}
                                     </div>
                                     <div class="col-md-3 mt-2">
-                                    january 2020
+                                        {{ $transaction->created_at ?? '' }}
                                     </div>
                                     <div class="col-md-1 d-none d-md-block">
                                         <img src="./images/dashboard-arrow-right.svg">
@@ -76,48 +78,8 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="/dashboard-transactions-details.html" class="card card-list d-block">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <img src="./images/product-4.jpg" alt="" style="max-width: 75px;">
-                                    </div>
-                                    <div class="col-md-4 mt-2">
-                                        brokolly
-                                    </div>
-                                    <div class="col-md-3 mt-2">
-                                    Yusuf
-                                    </div>
-                                    <div class="col-md-3 mt-2">
-                                    january 2020
-                                    </div>
-                                    <div class="col-md-1 d-none d-md-block">
-                                        <img src="./images/dashboard-arrow-right.svg">
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="/dashboard-transactions-details.html" class="card card-list d-block">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <img src="./images/product-4.jpg" alt="" style="max-width: 75px;">
-                                    </div>
-                                    <div class="col-md-4  mt-2">
-                                        brokolly
-                                    </div>
-                                    <div class="col-md-3 mt-2">
-                                    Yusuf
-                                    </div>
-                                    <div class="col-md-3 mt-2">
-                                    january 2020
-                                    </div>
-                                    <div class="col-md-1 d-none d-md-block">
-                                        <img src="./images/dashboard-arrow-right.svg">
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                        @endforeach
+                      
                 </div>
             </div>
         </div>

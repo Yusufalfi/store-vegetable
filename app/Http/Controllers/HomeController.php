@@ -20,12 +20,12 @@ class HomeController extends Controller
     {
         $banners = Banner::where('status','active')->limit(3)->orderBy('id','DESC')->get();
         // panggil model Category dan ambil 4 category
-        $categories = Category::take(6)->get();
+        $categories = Category::take(10)->get();
       
         // dd($banners);
 
         // panggil model Product dan panggil relasi Galleries dan take/ambil 8 Item foto
-        $products = Product::with(['galleries'])->take(8)->get();
+        $products = Product::with(['galleries'])->take(10)->get();
         // dd($products);
         return view('pages.home', compact('categories', 'products', 'banners'));
     }
