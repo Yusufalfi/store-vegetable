@@ -76,6 +76,7 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'admin'])->group
     Route::resource('user', 'UserController');
     Route::resource('product', 'ProductController');
     Route::resource('product-gallery', 'ProductGalleryController');
+    Route::resource('transaction', 'TransactionController');
 });
 
 Auth::routes();
